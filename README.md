@@ -86,7 +86,8 @@ The below sample codes were referenced for the following tasks and have been pro
 - Fires have been filtered based on their distance from the city (maximum 1250 miles permissible) and the fire year (1963 to 2023 only)
 - Since the fire date is quite messy, all fires for an year have been considered instead of just focusing on the fires between May 1st till October 31st.
 - There are 35 instances of curveRings out of the 135061 instances, so we can choose to ignore them without much impact on the overall result.
-
+- The smoke estimation considers fire type, fire size in square miles, and distance from the fire. It assigns varying weightages to different fire types, accounting for their distinct effects on air quality. The code also adjusts for fire size, converting GIS acres to square miles and considers dispersion with distance to provide a realistic impact estimate. Additionally, the obtained smoke estimate is scaled for better visualization alignment with AQI values. The code summarizes smoke impact over time by aggregating data by year.
+- To develop a predictive model for smoke estimates for the next 25 years (2024-2049), we employed an ARIMA model, a common choice for time series prediction, and calculated 95% confidence prediction intervals to account for uncertainty.
 
 ## Reproducing the analysis
 To reproduce this analysis, follow these steps:
