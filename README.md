@@ -5,16 +5,16 @@ Part 1 - Common Analysis sets the stage for the subsequent assignments. In Part 
 
 ## Common Analysis
 More and more frequently summers in the western US have been characterized by wildfires with smoke billowing across multiple western states. There are many proposed causes for this: climate change, US Forestry policy, growing awareness, just to name a few. Regardless of the cause, the impact of wildland fires is widespread. There is a growing body of work pointing to the negative impacts of smoke on health, tourism, property, and other aspects of society.
-The course project will require that you analyze wildfire impacts on a specific city in the US. The end goal is to be able to inform policy makers, city managers, city councils, or other civic institutions, to make an informed plan for how they could or whether they should make plans to mitigate future impacts from wildfires.
+The course project will require that we analyze wildfire impacts on a specific city in the US. The end goal is to be able to inform policy makers, city managers, city councils, or other civic institutions, to make an informed plan for how they could or whether they should make plans to mitigate future impacts from wildfires.
 
 The common research question that we are to answer is:
-**What are the estimated smoke impacts on your assigned city for the last 60 years?**
+**What are the estimated smoke impacts on the assigned city (Tulare) for the last 60 years?**
 
-We are to create an annual estimate of wildfire smoke in your assigned city. This estimate is just a number that you can eventually use to build a predictive model. Technically, smoke impact should probably be considered the health, tourism, economic or other social problems that result from the smoke. For this we'll generically call our estimate the wildfire smoke impact. We will consider other potential social and economic impacts during Part 2 of the course project. For now, we need some kind of number to represent an estimate of the smoke our city saw during each annual fire season.
+We are to create an annual estimate of wildfire smoke in our assigned city. This estimate is just a number that we can eventually use to build a predictive model. Technically, smoke impact should probably be considered the health, tourism, economic or other social problems that result from the smoke. For this we'll generically call our estimate the wildfire smoke impact. We will consider other potential social and economic impacts during Part 2 of the course project. For now, we need some kind of number to represent an estimate of the smoke our city saw during each annual fire season.
 Why is this an estimate of fire smoke? These are estimates because of a number of problems that are not easy to resolve and simplifications to make this course project reasonable for just a few weeks of work. One example is that actual smoke impact is based on wind direction over a course of several days, the intensity of the fire, and its duration. However, the fire polygon data only gives a year for each fire - it does not provide specific start and end dates for the fire. 
 The smoke estimate should adhere to the following conditions:
 - The estimate only considers the last 60 years of wildland fires (1963-2023).
-- The estimate only considers fires that are within 1250 miles of your assigned city.
+- The estimate only considers fires that are within 1250 miles of the assigned city (Tulare).
 - An annual fire season will run from May 1st through October 31st.
 
 
@@ -89,8 +89,8 @@ The below sample codes were referenced for the following tasks and have been pro
 
 ## Reproducing the analysis
 To reproduce this analysis, follow these steps:
-1. Clone this repository to your local machine.
-2. Ensure you have Python installed with the required libraries.
+1. Clone this repository to the local machine.
+2. Ensure that Python is installed with the required libraries.
 3. Download the GeoJSON Files.zip from [this link](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81) and extract the "USGS_Wildland_Fire_Combined_Dataset.json" file and place it under the data folder.
 4. Run Data_Acquisition.ipynb to generate the dataset "all_fire_data_with_distance.csv" inside the 'intermediate data' folder that will be required for further analysis.
 5. Next, run Analysis_Prediction_And_Visualization.ipynb to get the smoke estimate, build a prediction model and generate two of the visualizations.
