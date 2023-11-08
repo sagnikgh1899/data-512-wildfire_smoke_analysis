@@ -1,0 +1,2665 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Justin L. Welty</origin>
+        <origin>Michelle I. Jeffries</origin>
+        <pubdate>202109</pubdate>
+        <title>Combined wildfire datasets for the United States and certain territories, 1800s-Present (combined wildland fire polygons)</title>
+        <edition>1.0.0</edition>
+        <geoform>vector digital data</geoform>
+        <onlink>https://doi.org/10.5066/P9ZXGFY3</onlink>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>First, we would like to thank the wildland fire advisory group. Their wisdom and guidance helped us build the dataset as it currently exists. Currently, there are multiple, freely available fire datasets that identify wildfire and prescribed fire burned areas across the United States. However, these datasets are all limited in some way. Their time periods could cover only a couple of decades or they may have stopped collecting data many years ago. Their spatial footprints may be limited to a specific geographic area or agency. Their attribute data may be limited to nothing more than a polygon and a year. None of the existing datasets provides a comprehensive picture of fires that have burned throughout the last few centuries. Our dataset uses these existing layers and utilizes a series of both manual processes and ArcGIS Python (arcpy) scripts to merge these existing datasets into a single dataset that encompasses the known wildfires and prescribed fires within the United States and certain territories. Forty different fire layers were utilized in this dataset. First, these datasets were ranked by order of observed quality (Tiers). The datasets were given a common set of attribute fields and as many of these fields were populated as possible within each dataset. All fire layers were then merged together (the merged dataset) by their common attributes to created a merged dataset containing all fire polygons. Polygons were then processed in order of Tier (1-8) so that overlapping polygons in the same year and Tier were dissolved together. Overlapping polygons in subsequent Tiers were removed from the dataset. Attributes from the original datasets of all intersecting polygons in the same year across all Tiers were also merged so that all attributes from all Tiers were included, but only the polygons from the highest ranking Tier were dissolved to form the fire polygon. The resulting product (the combined dataset) has only one fire per year in a given area with one set of attributes. While it combines wildfire data from 40 wildfire layers and therefore has more complete information on wildfires than the datasets that went into it, this dataset has also has its own set of limitations. Please see the Data Quality attributes within the metadata record for additional information on this dataset's limitations. Overall, we believe this dataset is designed be to a comprehensive collection of fire boundaries within the United States and provides a more thorough and complete picture of fires across the United States when compared to the datasets that went into it.</abstract>
+      <purpose>These datasets were created by combining 40 different, published wildland fire data sources. Each one of these data sources has a different spatial scale, spatial resolution, and time period for their particular wildland fire dataset. The purpose of these new datasets is to combine these disparate wildfire datasets, using a common set of attributes, into a single set of polygons with a single fire boundary for each fire. This dataset is intended to create a more comprehensive fire dataset than the existing datasets while eliminating duplication of fire polygons and attributes.</purpose>
+      <supplinf>This data release includes the most up to date wildfire information through 2020. We anticipate, but cannot guarantee that this wildfire dataset will be updated yearly as new wildfire information becomes available.</supplinf>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>1835</begdate>
+          <enddate>2020</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>In work</progress>
+      <update>Annually</update>
+    </status>
+    <spdom>
+      <descgeog>United States of America</descgeog>
+      <bounding>
+        <westbc>-176.4844</westbc>
+        <eastbc>-58.3594</eastbc>
+        <northbc>71.5249</northbc>
+        <southbc>14.6048</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>biota</themekey>
+        <themekey>environment</themekey>
+      </theme>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>wildfire</themekey>
+        <themekey>fire</themekey>
+        <themekey>burned area</themekey>
+        <themekey>polygon</themekey>
+        <themekey>prescribed fire</themekey>
+      </theme>
+      <theme>
+        <themekt>USGS Thesaurus</themekt>
+        <themekey>fires</themekey>
+        <themekey>geospatial datasets</themekey>
+      </theme>
+      <place>
+        <placekt>Common geographic areas</placekt>
+        <placekey>North America</placekey>
+        <placekey>United States</placekey>
+      </place>
+    </keywords>
+    <accconst>Public domain data from the U.S. Government are freely redistributable with proper metadata and source attribution. The U.S. Geological Survey requests to be acknowledged as originator of these data in future products or derivative research.  Please see 'Distribution Info' for details.</accconst>
+    <useconst>None.  Users need to read the dataset's metadata thoroughly to understand appropriate use and data limitations. If there are any concerns, errors, or omissions in regard to this dataset, users should contact the data authors to gain additional information or to fix any existing errors in the data.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>FRESC Science Data Coordinator</cntper>
+          <cntorg>Forest and Rangeland Ecosystem Science Center</cntorg>
+        </cntperp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>777 NW 9th Street, Suite 400</address>
+          <city>Corvallis</city>
+          <state>OR</state>
+          <postal>97330</postal>
+          <country>United States of America</country>
+        </cntaddr>
+        <cntvoice>(541) 750-1030</cntvoice>
+        <cntemail>fresc_outreach@usgs.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>These datasets were obtained from 40 different wildland fire datasets, each with their own limitations in accuracy in both time and space. We are relying on the original dataset attributes for accuracy. We cannot know, for example, whether the fire occurred in the year stated in the attributes or whether it was a different year.  Whether derived by satellite imagery, created through the use of GPS points, or hand drawn on a topographic map, no wildfire perimeter is 100% accurate. In addition, not all fires were reported, especially older fires and smaller fires; thus fires reported in any year, especially those years before 1980, underestimate the actual number of fires. We intended to merge and dissolve different polygons that represent the same fire in different source datasets to create a single boundary for the wildfire. However, this dissolving process can result in the fire polygon with the least amount of detail contributing the most to the boundary of one fire. Instead of dissolving all fire polygons together regardless of dataset quality, our system broke the fires into 8 Tiers that were processed individually. By processing this data set in a tiered fashion (1-8) we hoped to improve accuracy of the polygons as each subsequent tier had fire polygons that intersected in space and fire year from the previous tiers removed before being processed. The goal was to improve the accuracy of the fire polygon. Whether this increases or decreases the accuracy of the fire boundary is unknown, because, as we stated before, no fire polygon is 100% accurate to begin with.  The raster boundaries should be assumed to be the approximate area burned. These rasters represent the first year burned, most recent year burned, and the count of fires (all, wildfire, and prescribed) based on the data in the dataset itself. It is impossible know how many fires were missed, mis-attributed (a wildfire being labeled a prescribed fire or vice versa) or mapped improperly.</attraccr>
+    </attracc>
+    <logic>This dataset was designed to eliminate duplicate wildfire boundaries. All internal checks suggest we have merged the fire data correctly. Year ranges fall within expected ranges as do dates. We cannot say with 100% confidence that all boundaries within this dataset are properly attributed as wildfires or prescribed fires. We flagged fires where identical areas were burned in consecutive years. These could either be errors in the dataset or prescribed fire areas that are burned year after year. In the final, combined dataset, we flagged all fires that were circular in shape by calculating a circle-ness ratio and selecting all fires with a circle-ness ratio &gt;=0.98 (values closer to 1 are more circular). Circular fires may be lightning strikes or fires where the true boundary was unknown and a user buffered a point. We also flagged fires where identical fire boundaries were detected in subsequent years. These likely represent the same fire and one dataset used an incorrect year. Users will have to have knowledge of their local area when determining whether this dataset accurately represents the area burned in the fire. Summary raster layers were checked to ensure that they match up to the polygon values to which they correspond. While we know the fire year of major fires is correct, there are thousands of smaller fires for which no record exists other than their inclusion in one of the original datasets. It is impossible for us to confirm all fire years in this dataset are accurate. </logic>
+    <complete>We did our best to remove all wildfires without a Year Burned attribute, a year range, or an estimated year.  We assumed that an area of land could not burn more than once in the same year. While extremely rare, burning twice in one year has been known to occur especially when a prescribed fire occurs in the spring and a wildfire burns through in the summer. However, even if an area did burn twice in the same year, for our purposes, we counted this as one burn. We assumed any fires that burned in the same year within 500m of each other were the same fire. This may not always be the case. While we would not lose the fire boundary itself, the fire attributes of these neighboring fires will be merged in to one record. Both of these assumptions will lower the count of actual fires, but should not affect the acreage.  To be included in the combined dataset, the fire data had to have a list year that was not a range or an estimated year. Burned areas using carbon dating or other estimated years are included in the merged dataset, but were excluded from the combined dataset.
+
+Wildfire_Notice
+Wildfire mapping prior to 1984 was inconsistent, infrequent, and done without the aid of more modern fire mapping methods (GPS and satellite imagery). Areas burned prior to 1984 in this dataset represent only a fraction of what actually burned. While areas burned on or after 1984 are much more accurate and complete, errors still can and do occur. This dataset represents the most complete set of digitized polygon fire data available to the public that we, the authors, were able to collect. It is not a complete collection of all wildfires burned during the time period it represents. 
+
+Prescribed_Burn_Notice
+Prescribed fire data in this dataset represents only a fraction of the area burned in prescribed burns across all years due to lack of reporting, particularly on private lands. The missing prescribed burn data becomes more pronounced further back in time, particularly in the southeastern U.S.; however, errors and omissions still occur through the most recent years in this dataset. This dataset represents the most complete set of digitized polygon fire data available to the public that we, the authors, were able to collect. It is not a complete collection of all prescribed burns burned during the time period it represents. 
+</complete>
+    <posacc>
+      <horizpa>
+        <horizpar>The horizontal accuracy is based on the inputs used to calculate this merged dataset. No fire perimeter is 100% accurate, however, and the fire perimeters in this dataset represent the approximate locations of the burned area.  </horizpar>
+      </horizpa>
+      <vertacc>
+        <vertaccr>Not applicable</vertaccr>
+      </vertacc>
+    </posacc>
+    <lineage>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>National Interagency Fire Center</origin>
+            <pubdate>20200331</pubdate>
+            <title>National Interagency Fire Center Wildfires 780-2020</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded this on 20210604
+Emily Harbo sent us the link: High (rigorous QC), perhaps gathered 4-5/2021, combines:
+WFDSS fire history 
+Alaska fire history
+USDA FS Regional Fire History Data
+BLM Fire Planning and Fuels
+National Park Service
+Fish and Wildlife Service
+Bureau of Indian Affairs
+CalFire FRAS</othercit>
+            <onlink>https://data-nifc.opendata.arcgis.com/datasets/interagency-fire-perimeter-history-all-years/explore?location=36.772800%2C57.912950%2C3.70</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>0780</begdate>
+              <enddate>2020</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>NIFC Interagency Fire Perimeter</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. This dataset was the only dataset in Tier 1.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Monitoring Trends in Burn Severity</origin>
+            <pubdate>2021</pubdate>
+            <title>Monitoring Trends in Burn Severity Wild and Prescribed Fires 1984-2019</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded the data on 20210604</othercit>
+            <onlink>https://www.mtbs.gov/direct-download</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1984</begdate>
+              <enddate>2019</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>MTBS</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were the one and only dataset in Tier 2 while prescribed fires were the one and only dataset in Tier 6, the first tier of prescribed fires.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Bureau of Land Management</origin>
+            <pubdate>2021</pubdate>
+            <title>Bureau of Land Management Wildfire Perimeters</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 20210607</othercit>
+            <onlink>https://gis.blm.gov/EGISDownload/LayerPackages/BLM_National_Fire_Perimeters.zip</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1878</begdate>
+              <enddate>2020</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>BLM Wildfires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>GeoMac</origin>
+            <pubdate>2020</pubdate>
+            <title>GeoMac Wildfires 2020</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 20210607</othercit>
+            <onlink>https://rmgsc.cr.usgs.gov/outgoing/GeoMAC/current_year_fire_data/current_year_all_states/</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2020</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>GeoMac 2020</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>GeoMac</origin>
+            <pubdate>2020</pubdate>
+            <title>GeoMac Historic Wildfires 2000-2019</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 20210607</othercit>
+            <onlink>https://rmgsc.cr.usgs.gov/outgoing/GeoMAC/historic_fire_data/</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>2000</begdate>
+              <enddate>2019</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>GeoMac Historic Perimeters</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>National Interagency Fire Center</origin>
+            <pubdate>2021</pubdate>
+            <title>National Interagency Fire Center Public - National Incident Feature Services 2020</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded the data on 20210604</othercit>
+            <onlink>https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/Public_Wildfire_Perimeters_View/FeatureServer/0/query?outFields=*&amp;where=1%3D1</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2020</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>NIFC Public NIFS</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>National Interagency Fire Center</origin>
+            <pubdate>2021</pubdate>
+            <title>National Interagency Fire Center Wildland Perimeters 2018-2020</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded the data on 20210604</othercit>
+            <onlink>https://data-nifc.opendata.arcgis.com/datasets/wfigs-wildland-fire-perimeters-full-history/explore?location=0.000000%2C0.000000%2C0.00</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>2018</begdate>
+              <enddate>2020</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>observed</srccurr>
+        </srctime>
+        <srccitea>NIFC Wildland Perimeters</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>National Park Service</origin>
+            <pubdate>2021</pubdate>
+            <title>National Park Service Wildland Fires 1881-2019</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Justin Welty downloaded on 20210616</othercit>
+            <onlink>http://mapservices.nps.gov/arcgis/rest/services/WildlandFire/WildlandFire/FeatureServer</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1881</begdate>
+              <enddate>2019</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>NPS Wildland Fires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>United States Forest Service</origin>
+            <pubdate>2021</pubdate>
+            <title>United States Forest Service Wildfire Perimeters 1878-2021</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded the data on 20210607</othercit>
+            <onlink>https://catalog.data.gov/dataset/national-usfs-final-fire-perimeter-feature-layer-eb876</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1878</begdate>
+              <enddate>2021</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>USFS Wildfires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>United States Forest Service</origin>
+            <pubdate>20210330</pubdate>
+            <title>United States Forest Service Southwest Region Fire Perimeters 2013-2018</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded the data on 20210607</othercit>
+            <onlink>https://www.fs.usda.gov/detail/r3/landmanagement/gis/?cid=stelprdb5201889</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>2013</begdate>
+              <enddate>2018</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>USFS Southwest Region Fires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>United States Forest Service</origin>
+            <pubdate>20030601</pubdate>
+            <title>United States Northern Rockies Region Fire Perimeters 1889-2003</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Justin Welty download on 20200430</othercit>
+            <onlink>https://www.fs.usda.gov/detailfull/r1/landmanagement/gis/?cid=fsp5_030970</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1889</begdate>
+              <enddate>2003</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>USFS Northern Rockies Region Fires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Wildland Fire Decision Support System</origin>
+            <pubdate>2021</pubdate>
+            <title>National Interagency Fire Center Wildland Fire Decision Support System Interagency Fire Perimeters 1835-2019</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Justin Welty downloaded on 20210616</othercit>
+            <onlink>https://nifc.maps.arcgis.com/home/item.html?id=7a1bd4435df74820813314b87597713a</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1835</begdate>
+              <enddate>2019</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>WFDSS Interagency Fire Perimeters</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>State of Alaska</origin>
+            <pubdate>2021</pubdate>
+            <title>Alaska Fire Perimeters </title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 7/13/2021</othercit>
+            <onlink>https://blm-egis.maps.arcgis.com/apps/MapSeries/index.html?appid=32ec4f34fb234ce58df6b1222a207ef1</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1940</begdate>
+              <enddate>2020</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Alaska Fire Perimeters 1940-2020</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Bureau of Land Management</origin>
+            <pubdate>20210101</pubdate>
+            <title>Nevada Bureau of Land Management Fire Perimeters 1910-2020</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded 6/7/2021</othercit>
+            <onlink>https://catalog.data.gov/dataset/blm-nv-wildland-fire-perimeters-final-perimeter-polygons-a7114</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1910</begdate>
+              <enddate>2020</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Nevada BLM Fire Perimeters</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Bureau of Land Management</origin>
+            <pubdate>20210524</pubdate>
+            <title>Oregon Bureau of Land Management Fire Perimeters 1900-2020</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 6/7/2021</othercit>
+            <onlink>https://navigator.blm.gov/data?id=ae8fe69ea1c7dfc7</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1900</begdate>
+              <enddate>2020</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Oregon BLM Fire Perimeters</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>State of California</origin>
+            <pubdate>202104</pubdate>
+            <title>California Fire Perimeters 1878-2020</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 6/7/2021</othercit>
+            <onlink>https://frap.fire.ca.gov/mapping/gis-data/</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1878</begdate>
+              <enddate>2020</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>California Fire Perimeters</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>State of Utah</origin>
+            <pubdate>2019</pubdate>
+            <title>Utah Fire Perimeters 1976-2019</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Justin Welty downloaded on 20200520. This link is no longer active and we cannot find a new link to the data.</othercit>
+            <onlink>https://catalog.data.gov/dataset/blm-utah-fire-perimeter-fper-final-polygons </onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1976</begdate>
+              <enddate>2019</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Utah Fire Perimeters</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>State of Washington</origin>
+            <pubdate>20210503</pubdate>
+            <title>Washington State Large Fires 1973-2020</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 6/7/2021</othercit>
+            <onlink>https://data-wadnr.opendata.arcgis.com/datasets/6f31b076628d4f8ca5a964cbefd2cccc_0/explore?location=47.354550%2C-120.225150%2C7.86</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1973</begdate>
+              <enddate>2020</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Washington State Large Fires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>H.M. Suter</origin>
+            <pubdate>20130701</pubdate>
+            <title>New York Adirondack Wildfire Complex 1903</title>
+            <geoform>vector digital data</geoform>
+            <othercit>This report and map were acquired by Susan Kemp, USGS, on 20210621 and digitized by Elizabeth Macdougal, USGS, a week later. The pub date for the link is July 1, 2017, but the original report was actually written in 1904.</othercit>
+            <onlink>https://archive.org/details/forestfiresinadi26sute/page/n3/mode/2up</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>1903</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>New York Adirondack 1903 Wildfire Complex</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Bureau of Land Management</origin>
+            <pubdate>20200611</pubdate>
+            <title>Idaho Bureau of Land Management 2020 Fires</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 6/7/2021</othercit>
+            <onlink>https://archive.org/details/forestfiresinadi26sute/page/n3/mode/2up</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2020</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Idaho BLM 2020 Fires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Bureau of Land Management</origin>
+            <pubdate>20200409</pubdate>
+            <title>Idaho Bureau of Land Management Historic Fires 1878-2019</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 6/7/2021</othercit>
+            <onlink>https://catalog.data.gov/dataset/fire-perimeters-historic-polygon</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1878</begdate>
+              <enddate>2019</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Idaho BLM Historic Fires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Boise National Forest</origin>
+            <pubdate>1998</pubdate>
+            <title>Boise National Forest Fire Perimeters 1908-1996</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 6/7/2021</othercit>
+            <onlink>https://catalog.data.gov/dataset/historic-large-fires-for-boise-national-forest-idaho-for-1900-1997</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1908</begdate>
+              <enddate>1996</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Boise National Forest Fire Perimeters 1908-1996</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Crown of the Continent</origin>
+            <pubdate>20160512</pubdate>
+            <title>Crown of the Continent Fire Perimeters 1931-2013</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 6/7/2021</othercit>
+            <onlink>https://catalog.data.gov/dataset/fire-history-in-the-crown-of-the-continent23c3e</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1931</begdate>
+              <enddate>2013</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Crown of the Continent Fires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Forest Service</origin>
+            <pubdate>2020</pubdate>
+            <title>Great Idaho Fire of 1910</title>
+            <geoform>vector digital data</geoform>
+            <othercit>No publication date or originator was included in the online PDF where this document is located. The publication date was listed as 2020 although this is incorrect. The originator is listed as USFS. The report was downloaded and digitized by Jessica Carnes on 20200520.</othercit>
+            <onlink>https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5444731.pdf</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>1910</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Great Idaho Fire of 1910</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Morley Nelson Snake River Birds of Prey National Conservation Area</origin>
+            <pubdate>2021</pubdate>
+            <title>Morley Nelson Snake River Birds of Prey National Conservation Area 2020 Fires</title>
+            <geoform>vector digital data</geoform>
+            <othercit>This dataset was sent to Justin Welty by the Idaho Army National Guard on 20210324. Data are not publicly accessible in their original format.</othercit>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2020</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Morley Nelson Snake River Birds of Prey National Conservation Area 2020 Fires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Morley Nelson Snake River Birds of Prey National Conservation Area</origin>
+            <pubdate>2021</pubdate>
+            <title>Morley Nelson Snake River Birds of Prey National Conservation Area Historic Fires 1956-2019</title>
+            <geoform>vector digital data</geoform>
+            <othercit>This dataset was sent to Justin Welty by the Idaho Army National Guard on 20210324. Data are not publicly accessible in their original format.</othercit>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1956</begdate>
+              <enddate>2019</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Morley Nelson Snake River Birds of Prey National Conservation Area Historic Fires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Sky Island</origin>
+            <pubdate>2020</pubdate>
+            <title>Sky Island Fire Perimeters 1956-2019</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 6/7/2021</othercit>
+            <onlink>https://catalog.data.gov/dataset/mapped-fire-perimeters-from-the-sky-island-mountains-of-us-and-mexico-1985-2017</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1956</begdate>
+              <enddate>2019</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Sky Island Fires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Forest Service</origin>
+            <pubdate>2001</pubdate>
+            <title>Tillamook Oregon 1918-1951 Select Fires</title>
+            <geoform>vector digital data</geoform>
+            <othercit>A Tillamook Burn PDF was sent to Justin Welty by Yanu Gallimore, BLM, on 20200909 containing 5 Tillamook area fires from 1918-1951.The fires were digitized by USGS Land Treatment Digital Library staff in October, 2020. The original PDF can be found here: https://www.fs.fed.us/database/feis/pdfs/other/83870_Hoadley_2001.pdf</othercit>
+            <onlink>https://www.fs.fed.us/database/feis/pdfs/other/83870_Hoadley_2001.pdf</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1918</begdate>
+              <enddate>1951</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Tillamook Oregon 1918-1951 Select Fires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>United States Fish and Wildlife Service</origin>
+            <pubdate>20200127</pubdate>
+            <title>United States Fish and Wildlife Service Charles M Russell National Wildlife Refuge Fires 1980-2019 </title>
+            <geoform>tabular digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 6/7/2021</othercit>
+            <onlink>https://catalog.data.gov/dataset/charles-m-russell-national-wildlife-refuge-fire-history-gis-feature-classes</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1980</begdate>
+              <enddate>2019</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>USFWS CMR Fires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Todd Sutherland</origin>
+            <pubdate>20200127</pubdate>
+            <title>United States Fish and Wildlife Service Charles M Russel National Wildlife Refuge Fires 1980-2017</title>
+            <geoform>tabular digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 6/7/202Michelle Jeffries downloaded on 6/7/20211</othercit>
+            <onlink>https://catalog.data.gov/dataset/charles-m-russell-national-wildlife-refuge-fire-history-gis-feature-classes</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1980</begdate>
+              <enddate>2017</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>USFWS CMR Revised Fires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were used in Tier 3.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>GeoMac</origin>
+            <pubdate>2020</pubdate>
+            <title>GeoMac Annual Perimeters 2000-2019</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 6/7/2021</othercit>
+            <onlink>https://rmgsc.cr.usgs.gov/outgoing/GeoMAC/historic_fire_data</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>2000</begdate>
+              <enddate>2019</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>GeoMac Annual Perimeters 2000-2019</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were the only ones used in Tier 4.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Land Treatment Digital Library	</origin>
+            <pubdate>20210628</pubdate>
+            <title>Land Treatment Digital Library Wildfire Perimeters 1941-2020</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 20210628</othercit>
+            <onlink>https://www.sciencebase.gov/catalog/item/60b13783d34e86b9387e2010</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1941</begdate>
+              <enddate>2020</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>LTDL Wildfires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Wildfires from this dataset were the only ones used in Tier 5.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>State of California</origin>
+            <pubdate>202104</pubdate>
+            <title>California Prescribed Fires 1900-2020</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 6/7/2021</othercit>
+            <onlink>https://frap.fire.ca.gov/mapping/gis-data/</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1900</begdate>
+              <enddate>2020</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>California Prescribed Fires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Prescribed fires from this dataset were used in Tier 7.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Land Treatment Digital Library</origin>
+            <pubdate>20210628</pubdate>
+            <title>Land Treatment Digital Library Prescribed Fires 1944-2019</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 20210628</othercit>
+            <onlink>https://www.sciencebase.gov/catalog/item/60b13783d34e86b9387e2010</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1944</begdate>
+              <enddate>2019</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>LTDL Prescribed Fires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Prescribed fires from this dataset were used in Tier 7.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Bureau of Land Management</origin>
+            <pubdate>20210604</pubdate>
+            <title>Bureau of Land Management Vegetation Treatment Prescribed Fires 1951-2020</title>
+            <geoform>vector digital data</geoform>
+            <othercit>BLM VTRT data were sent to Michelle Jeffries be Tenille Leonard, BLM, on 20210621. They are available upon request only and no link exists to the data. </othercit>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1951</begdate>
+              <enddate>2020</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>BLM VTRT Prescribed Fires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Prescribed fires from this dataset were in the last tier, Tier 8 because they had no reported acre values..</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>National Fire Plan Operations and Reporting System Prescribed Fires</origin>
+            <pubdate>2021</pubdate>
+            <title>National Fire Plan Operations and Reporting System Prescribed Fires </title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 20210714</othercit>
+            <onlink>ttps://usgs.nfpors.gov/arcgis/rest/services/nfpors_extract/FeatureServer</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>2001</begdate>
+              <enddate>2020</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>NFPORS Prescribed Fires</srccitea>
+        <srccontr>One of the wildfire datasets used to create this dataset. Prescribed fires from this dataset were used in Tier 7.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>State of Oregon</origin>
+            <pubdate>20210524</pubdate>
+            <title>Oregon Pre-1850 Fires</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 20210607</othercit>
+            <onlink>https://navigator.blm.gov/data?id=ae8fe69ea1c7dfc7</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>1850</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Oregon Pre-1850 Fires</srccitea>
+        <srccontr>No actual years were indicated for any fires within this dataset, rather it was all fires that occurred before 1850. It was merged into the larger dataset, but no tiers were set and this dataset were not included in the combined dataset.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>State of Oregon</origin>
+            <pubdate>20210524</pubdate>
+            <title>Oregon 1850-1890 Fires</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 20210607</othercit>
+            <onlink>https://navigator.blm.gov/data?id=ae8fe69ea1c7dfc7</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1850</begdate>
+              <enddate>1890</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Oregon 1850-1890 Fires</srccitea>
+        <srccontr>No actual years were indicated for any fires within this dataset. It was merged, but no tiers were set and this dataset were not included in the combined dataset.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>State of Oregon</origin>
+            <pubdate>20210524</pubdate>
+            <title>Oregon 1890-1920 Fires</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 20210607</othercit>
+            <onlink>https://navigator.blm.gov/data?id=ae8fe69ea1c7dfc7</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1890</begdate>
+              <enddate>1920</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Oregon 1890-1920 Fires</srccitea>
+        <srccontr>No actual years were indicated for any fires within this dataset. It was merged, but no tiers were set and this dataset were not included in the combined dataset.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>State of Oregon</origin>
+            <pubdate>20210524</pubdate>
+            <title>Oregon 1920-1940 Fires</title>
+            <geoform>vector digital data</geoform>
+            <othercit>Michelle Jeffries downloaded on 20210607</othercit>
+            <onlink>https://navigator.blm.gov/data?id=ae8fe69ea1c7dfc7</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1920</begdate>
+              <enddate>1940</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Oregon 1920-1940 Fires</srccitea>
+        <srccontr>No actual years were indicated for any fires within this dataset. It was merged, but no tiers were set and this dataset were not included in the combined dataset.</srccontr>
+      </srcinfo>
+      <procstep>
+        <procdesc>The original wildland fire datasets were downloaded from their original data sources. These feature classes were open and inspected. All fires that were clearly labeled as wildfires or prescribed fires were labeled as such. Remaining fires in wildfire datasets were labeled as "likely wildfire". Fires from the Monitoring Trends in Burn Severity Dataset marked as "Unknown" were labeled as "Unknown - Likely Wildfire" if a wildfire report existed for these fires. Otherwise, they were labeled as "Unknown - Likely Prescribed Fire". Additional fields were added to each dataset to create common fields across all original datasets (for a complete list of all the attributes see the "Entity and Attribute" section of this metadata record). These fields included Fire Source, Fire Tier, Fire Name, Fire Code, Fire Year, multiple fire dates, ignition source (human or natural), map method and notes. Available fields that matched these common fields were copied into the common field attributes using ArcGIS Field Calculator. For example, if the original dataset contained the attribute Name which was the name of the fire, these Name values were copied to the common Fire Name field. This allowed common fields to be matched across datasets regardless of what the original field attribute was. Fires with know fire years had their year value assigned to the Fire_Year field. All fires with carbon dating years, estimated years, fiscal years (where the calendar year could not be determined by the date), and year ranges were assigned to an estimated year field. All these datasets were then merged together into a single dataset to create the USGS_Wildland_Fire_Merged_Dataset and all data past 2020 was removed from the dataset. This original, merged dataset is included as one of the products in this download. It may have some uses, but has not been cleaned and should be used with care.</procdesc>
+        <srcused>NIFC Interagency Fire Perimeter</srcused>
+        <srcused>MTBS</srcused>
+        <srcused>BLM Wildfires</srcused>
+        <srcused>GeoMac 2020</srcused>
+        <srcused>GeoMac Historic Perimeters</srcused>
+        <srcused>NIFC Public NIFS</srcused>
+        <srcused>NIFC Wildland Perimeters</srcused>
+        <srcused>NPS Wildland Fires</srcused>
+        <srcused>USFS Wildfires</srcused>
+        <srcused>USFS Southwest Region Fires</srcused>
+        <srcused>USFS Northern Rockies Region Fires</srcused>
+        <srcused>WFDSS Interagency Fire Perimeters</srcused>
+        <srcused>Alaska Fire Perimeters 1940-2020</srcused>
+        <srcused>Nevada BLM Fire Perimeters</srcused>
+        <srcused>Oregon BLM Fire Perimeters</srcused>
+        <srcused>California Fire Perimeters</srcused>
+        <srcused>Utah Fire Perimeters</srcused>
+        <srcused>Washington State Large Fires</srcused>
+        <srcused>New York Adirondack 1903 Wildfire Complex</srcused>
+        <srcused>Idaho BLM 2020 Fires</srcused>
+        <srcused>Idaho BLM Historic Fires</srcused>
+        <srcused>Boise National Forest Fire Perimeters 1908-1996</srcused>
+        <srcused>Crown of the Continent Fires</srcused>
+        <srcused>Great Idaho Fire of 1910</srcused>
+        <srcused>Morley Nelson Snake River Birds of Prey National Conservation Area 2020 Fires</srcused>
+        <srcused>Morley Nelson Snake River Birds of Prey National Conservation Area Historic Fires</srcused>
+        <srcused>Sky Island Fires</srcused>
+        <srcused>Tillamook Oregon 1918-1951 Select Fires</srcused>
+        <srcused>USFWS CMR Fires</srcused>
+        <srcused>USFWS CMR Revised Fires</srcused>
+        <srcused>GeoMac Annual Perimeters 2000-2019</srcused>
+        <srcused>LTDL Wildfires</srcused>
+        <srcused>California Prescribed Fires</srcused>
+        <srcused>LTDL Prescribed Fires</srcused>
+        <srcused>BLM VTRT Prescribed Fires</srcused>
+        <srcused>NFPORS Prescribed Fires</srcused>
+        <srcused>Oregon Pre-1850 Fires</srcused>
+        <srcused>Oregon 1850-1890 Fires</srcused>
+        <srcused>Oregon 1890-1920 Fires</srcused>
+        <srcused>Oregon 1920-1940 Fires</srcused>
+        <procdate>202106</procdate>
+        <srcprod>USGS_Wildland_Fire_Merged_Dataset</srcprod>
+      </procstep>
+      <procstep>
+        <procdesc>Once the data were merged, attribute information was brought into Tableau and a series of quality control steps were conducted in both Tableau and ArcGIS Pro in an attempt to improve data quality. Completed ignition, discover, controlled, contained, or fire out fields were used to fill in fire year fields where no year existed or only a fiscal year was listed. Many fires contained incorrect dates when the original dataset required a date and the date was unknown. For example, the date 1/1/1900 was used for many fires that did not occur in 1900. These incorrect dates that did not match the fire year were removed from the dataset. Finally, we noticed many prescribed fire datasets contained both a reported acreage and GIS acreage. We also noticed that the GIS acres were sometimes tens of thousands of times larger than the reported acres. These datasets contained GIS polygons that represented project areas of which only a small percentage was burned. Based on feedback from our team of wildfire experts we flagged any prescribed fires where the GIS and reported acres differed by more than 1000 acres wherever reported acres and GIS acres existed. Where reported acres did not exist, prescribed fires were included as there was no way to determine if the prescribed fire polygon was accurate. Fire "Tiers" were assigned to the various datasets based on feedback from our team of wildfire experts. These Tiers attempted to rank the fire datasets in order of quality. Fire Tiers were only assigned if the fire had a known fire year (estimated years, carbon dating years, missing years, and year ranges were excluded), GIS acres were greater than 0 (some features had null geometry), and prescribed fires were within 500. All fires there were assigned a Tier were exported and sorted by Tier, Fire Year (ascending), and GIS Acres (descending) to create a USGS_Wildland_Fire_Merged_Subset. </procdesc>
+        <srcused>USGS_Wildland_Fire_Merged_Dataset</srcused>
+        <procdate>202106</procdate>
+        <srcprod>USGS_Wildland_Fire_Merged_Subset</srcprod>
+      </procstep>
+      <procstep>
+        <procdesc>The US_Merged_Wildland_Fire_Subset was then run through a ArcGIS Pro Python (arcpy) script. This script selected each fire in order, one at a time. The first fire was selected (selection 1) and any fires within that Tier that overlapped in geographically and in the same year were also selected (selection 2). We assumed any fires that occurred within 500m of this fire were also fires from the same complex so we then selected any fires within 500m of selection 2. This 500m search distance selection was repeated within the Tier and year until no more fires were selected. The selected polygons (1 or more) were dissolved to make a single polygon that included the fire year as an attribute in a new dataset. The selected polygons were then deleted from the original Tier and any polygons that intersected the new dissolved polygon in space and year (additional duplicates in subsequent tiers) were also removed from the working dataset. This processed continued fire by fire until all fire polygons were processed and the USGS_Wildland_Fire_Combined_Dataset was created.</procdesc>
+        <srcused>USGS_Wildland_Fire_Merged_Subset</srcused>
+        <procdate>202106</procdate>
+        <srcprod>USGS_Wildland_Fire_Combined_Dataset</srcprod>
+      </procstep>
+      <procstep>
+        <procdesc>Once all polygons were processed, the attributes were added to each row. We selected each row in the USGS_Wildland_Fire_Combined_Dataset and went through each record one at a time. Using a copy of the US_Merged_Wildland_Fire_Subset we selected anything that intersected the selected record in both geographic location and year. We looped through each of these selected records and tallied the different attributes. For example if 10 records contained a polygon for the Soda wildfire the script looped through the fire names an assembled them in the Fire_Name field count. Using this example, let's say that 5 rows had a fire name of "Soda", 3 had "SODA", and two had "soda". The resulting Fire_Name attribute in the USGS_Wildland_Fire_Combined_Dataset for that row would appear like this: "Soda (5), SODA (3), soda (2)" where the parenthetical values represent the count of times that attribute appeared. This was done for all fields. All date fields, which were separate attributes in the US_Merged_Wildland_Fire_Subset, were combined into one date field with the specific type of date listed in the attributes. Within the fire team advising us, there was considerable concern about date quality. It was for this reason all the dates were combined into one field so as not to favor any date. The output of dates would look like this hypothetical example: Listed Wildfire Discovery Date(s): 2020-08-16 (2) | Listed Wildfire Controlled Date(s): 2020-11-17 (1), 2020-12-02 (1), 2020-11-16 (1) | Listed Wildfire Containment Date(s): 2020-11-14 (2), 2020-10-29 (1). As you can see from this example, the same date types are not always identical. This could be because the fire was actually two distinct fires or different dates were listed in different datasets for the same fire. In situations like this, the user is responsible for determining the true cause of this discrepancy.   </procdesc>
+        <srcused>USGS_Wildland_Fire_Combined_Dataset</srcused>
+        <srcused>US_Merged_Wildland_Fire_Subset</srcused>
+        <procdate>202108</procdate>
+      </procstep>
+      <procstep>
+        <procdesc>After processing, the USGS_Wildland_Fire_Combined_Dataset underwent further testing and flagging of suspect rows. Some of the fires appear as near perfect circles. This could be from lightning strikes being counted as small fires or other small fires having a point buffered to the acreage of the fire size because no true polygon was created. A circle circle-ness index was calculated by using the following equation in Field Calculator "4*pi*(Shape_Area/(Shape_Length * Shape_Length))". As values approached 1, the shape became more circular. After a visual inspection of the polygons with values close to 1, we chose to create a "Circle_Flag" field and flag any shapes with a value greater than or equal to 0.98. We created two CSV tables included in this data release that highlight the number and percentage of these circular fire flags by year (Circular_Fire_Flag_Counts_by_Year.csv) and by state (Circular_Fire_Flag_Counts_by_State.csv).This does not mean that the flagged values are incorrect or that the unflagged values are correct. It is simply a way of highlighting some very circular polygons that may be incorrect. We included this measure of circle-ness as an additional field as well so that users could adjust the circle flag setting if needed. Our advisory group decided that any circular fires greater than 1 acre in size should be excluded from the summary raster dataset. Circular fire polygons are highly unlikely to represent the actual area burned. Where fire size was less than 1 acre, the advisory team determined that the risk of misassigning the burned area to the raster was minimal given the fire size. For any circular polygons greater than 1 acre, the risk of misassigning a burned area was too high and hence these were not included in the raster analysis. We included an Exclude_From_Summary_Rasters field to flag circular polygons greater than 1 acre in size so we could exclude them from the raster summaries. 
+
+We also ran a Tabulate Intersection of the fire dataset against itself to look at overlapping polygons. Tabulate Intersect measures the percent and amount of overlap from two different polygon datasets. By using the same dataset twice we were looking for any fires that overlapped our fire polygon in the same year or nearby years. Overlapping polygons should not occur within the same year and would be an error (we did not detect any). Polygons with near 100% overlap in consecutive years could be the same fire in different datasets with a year value that is correct in one and incorrect in another dataset. This can occur particularly with older fires. There is no way to identify the actual year or which one is correct, if one is in fact incorrect. Therefore, for any fires with &gt;10% overlap within 1 -2 years of the focal fire, we included a flag warning field that indicates the percentage and acres overlap, the year the overlapping fire occurred, and the overlapping fires Assigned_USGS_ID. We included the full Tabulate Intersect as its own table (USGS_Wildland_Fires_Overlapping_Fire_Data) with all percentages and all years of overlap as one of the outputs as it may be of interest to some users. This dataset may be of particular interest to those who want to identify when and how much other fires have overlapped their fire boundary of interest. For example, if a user was interested in the wildfire USGS_Assigned_ID 82978 they could filter the USGS_Assigned_ID field by that value. This filter would return 13 rows in the overlap table. This indicates 13 different fires intersected fire 82978 at different points in time. Overlapping acres range from 1.8 to 1002 acres (0.14% to 81.5%) of the fire boundary and in years from 1996 to 2016 (22 to 2 years) before the fire of interest. Users can also see that only 3 of the other fires were wildfires while the other 10 are prescribed fires. In this way, users investigate the prior and subsequnt fire activity for each individual fire. 
+
+The final flag field highlighted records where attribute data indicated that the fire was both a wildfire and a prescribed fire. We created two CSV tables included in this data release that highlight the number and percentage of these wildfire and prescribed fire flags by year (Wildfire_and_Prescribed_Fire_Flag_Counts_By_Year.csv) and by state  (Wildfire_and_Prescribed_Fire_Flag_Counts_By_State.csv). There are 3 main reasons this could occur. First, one of the entries may be in error. Prescribed fires may end up in a wildfire dataset or vice versa. Fires may also be given an incorrect fire designation in one or more datasets. Second, a wildfire may intentionally be assigned as a prescribed fire. This occurs when a wildfire burns through a planned prescribed burn area. Finally, it is possible, although rare, that a wildfire burns through an area later in the same year after a prescribed fire occurs in the spring. It is often difficult or impossible to determine the true answer and so the fields are simply flagged to warn the users that the fire may not actually be it's assigned fire type.</procdesc>
+        <srcused>USGS_Wildland_Fire_Combined_Dataset</srcused>
+        <procdate>202109</procdate>
+      </procstep>
+      <procstep>
+        <procdesc>Once the QC checks on the final dataset were completed, summary rasters were generated from the polygon data. The fire polygons were turned into 30 meter rasters representing various summary counts: (a) count of all wildland fires that burned a pixel, (b) count of wildfires that burned a pixel, (c) the first year a wildfire burned a pixel, (d) the most recent year a wildfire burned a pixel, and (e) count of prescribed fires that burned a pixel. For full details on how these rasters were created see the raster metadata.</procdesc>
+        <srcused>USGS_Wildland_Fire_Combined_Dataset</srcused>
+        <procdate>202109</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>G-polygon</sdtstype>
+        <ptvctcnt>65845</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Albers Conical Equal Area</mapprojn>
+          <albers>
+            <stdparll>20.0</stdparll>
+            <stdparll>60.0</stdparll>
+            <longcm>-96.0</longcm>
+            <latprjo>40.0</latprjo>
+            <feast>0.0</feast>
+            <fnorth>0.0</fnorth>
+          </albers>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.6096</absres>
+            <ordres>0.6096</ordres>
+          </coordrep>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>North_American_Datum_1983</horizdn>
+        <ellips>GRS_1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>USGS_Wildland_Fire_Merged_Dataset.csv</enttypl>
+        <enttypd>CSV File</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Unique identification for the polygon and it's attributes</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>A unique, numeric identification number</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Fire_Tier</attrlabl>
+        <attrdef>The perceived quality of the fire feature as determined by the wildfire group with wildfires contained in Tiers 1-5 and prescribed fires contained in Tiers 6-8.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>A Tier was not assigned to this fire either because the fire did not have a set calendar year or because the prescribed fire GIS acres were greater than 1000 acres compared to the reported acres.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>1</rdommin>
+            <rdommax>8</rdommax>
+            <attrunit>Ranking</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Fire_Type</attrlabl>
+        <attrdef>The type of fire (prescribed or wild) either assigned to the feature based on the attributes or ascertained from the dataset itself. Qualifiers "Likely" and "Unknown" are used when the dataset did not specifically indicate the fire type. </attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>Likely Wildfire</edomv>
+            <edomvd>The feature came from a wildfire dataset, but no attribute specifically indicated that this was a wildfire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Prescribed Fire</edomv>
+            <edomvd>The feature came from a prescribed fire dataset and was labeled as a prescribed fire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Unknown - Likely Prescribed Fire</edomv>
+            <edomvd>The MTBS dataset labeled this dataset as an unknown fire type. However, no wildfire report exists for this fire. Therefore, we are assuming this MTBS fire is a prescribed fire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Unknown - Likely Wildfire</edomv>
+            <edomvd>The MTBS dataset labeled this dataset as an unknown fire type. However, a wildfire report exists for this fire. Therefore, we are assuming this MTBS fire is a wildfire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Wildfire</edomv>
+            <edomvd>The feature came from a wildfire dataset and was clearly labeled as a wildfire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Data_Source</attrlabl>
+        <attrdef>The original data source of the individual feature. There are 40 original source datasets. See the source inputs for a full list of the individual datasets used  </attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Fire_Calendar_Year</attrlabl>
+        <attrdef>The calendar year when the dataset creators determined the fire occurred. </attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>The calendar year the fire occurred could not be determined or was an estimate or range.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>1835</rdommin>
+            <rdommax>2020</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Fire_Year_Status</attrlabl>
+        <attrdef>A categorical description of the year type listed in either the Fire_Calendar_Year field or the Estimated_Year_or_Range field.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>Actual Start Year</edomv>
+            <edomvd>Attributes indicate that year within the Fire_Calendar_Year field represents the calendar year when the fire occurred</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Award Date</edomv>
+            <edomvd>Attributes indicate that the year within the Estimated_Year_or_Range field represents the year the prescribed fire contract was awarded. This may or may not be the year the prescribed fire occurred.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Carbon dating estimate</edomv>
+            <edomvd>Attributes indicate that the year within the Estimated_Year_or_Range field was estimated using carbon dating.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Estimated Year</edomv>
+            <edomvd>Attributes indicate that the year within the Estimated_Year_or_Range field was an estimate and not necessarily the actual year of the fire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Fiscal Year</edomv>
+            <edomvd>Attributes indicate that the year within the Estimated_Year_or_Range field was the fiscal year of the fire and not necessarily the actual year of the fire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Fiscal Year Planned</edomv>
+            <edomvd>Attributes indicate that the year within the Estimated_Year_or_Range field was the planned fiscal year of the prescribed fire and not necessarily the actual year of the fire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Likely Estimate</edomv>
+            <edomvd>Attributes indicate that the year within the Estimated_Year_or_Range field was likely an estimate. This was based on notes or other fields.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Unknown Year</edomv>
+            <edomvd>No year was provided in the attributes that would indicate the fire year, the true year cannot be estimated and is unknown</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Year Range</edomv>
+            <edomvd>Attributes indicate that the year of the fire within the Estimated_Year_or_Range field was given as a range and was not the actual year.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Estimated_Year_or_Range</attrlabl>
+        <attrdef>If the fire year given was not the Actual Start Year, as indicated in the Fire_Year_Status column, the year estimate, year range, fiscal year, or carbon dating year was indicated here.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>The actual year was recorded or no year was recorded.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>GIS_Acres</attrlabl>
+        <attrdef>The GIS calculated acres of the fire polygon calculated by using the Calculate Geometry tool in ArcGIS Pro.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>3614020.62856015</rdommax>
+            <attrunit>Acres</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>GIS_Hectares</attrlabl>
+        <attrdef>The GIS calculated hectares of the fire polygon calculated by using the Calculate Geometry tool in ArcGIS Pro.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>1462542.25913747</rdommax>
+            <attrunit>Hectares</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Rx_Reported_Acres</attrlabl>
+        <attrdef>For prescribed fires, the user reported acres that were burned in the prescribed fire. These can be different than the GIS acres.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>The fire was either a wildfire or no user reported acres were recorded for the prescribed fire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>228342</rdommax>
+            <attrunit>Acres</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Rx_Reported_vs_GIS_Difference</attrlabl>
+        <attrdef>When GIS acres exist, the value that exists when the GIS acres are subtracted from the reported acres. Positive values indicate that reported acres are greater than GIS acres. Negative values indicate that GIS acres are greater than reported acres.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No reported acres exist or the fire is a wildfire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>-228333.7525</rdommin>
+            <rdommax>56771.3212233826</rdommax>
+            <attrunit>Acres</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Fire_Name</attrlabl>
+        <attrdef>The name of the wildfire or prescribed fire. Null values were given the name "No Fire Name Provided".</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Fire_Code</attrlabl>
+        <attrdef>For wildfires only, the 4 digit wildfire code assigned to the wildfire. Some wildfire datasets had codes longer than 4 digits and these were included as well if they were in the original code field. If no code was given or the fire was a prescribed fire, "No code provided" was entered.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Fire_ID</attrlabl>
+        <attrdef>The unique fire ID assigned to the fire by the original data source</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No fire ID field existed in the original data source or the fire ID field was null for this fire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>IRWIN_ID</attrlabl>
+        <attrdef>The IRWIN ID assigned to the fire. Only recent wildfires have an IRWIN ID.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>The fire did not have an IRWIN ID assigned.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text	</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Fire_Cause</attrlabl>
+        <attrdef>The cause of the fire as indicated by the original data source.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No fire cause was listed.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Cause_Classification</attrlabl>
+        <attrdef>A derived fire cause that was created for this dataset and based on the Fire_Cause field.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>Human</edomv>
+            <edomvd>The fire was started by human caused activities.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Natural</edomv>
+            <edomvd>The fire was started by natural phenomenon (usually lightning).</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Undetermined</edomv>
+            <edomvd>The cause of the fire was not determined or not listed.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Ignition_Date</attrlabl>
+        <attrdef>The date the data source indicated that the wildfire first started.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No fire ignition date was recorded</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>1/1/1973</rdommin>
+            <rdommax>11/9/2020</rdommax>
+            <attrunit>Date</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Discovery_Date</attrlabl>
+        <attrdef>The date the data source indicated that the wildfire was first discovered.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No fire discovery date was recorded</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>8/1/1902</rdommin>
+            <rdommax>1/14/2021</rdommax>
+            <attrunit>Date</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Controlled_Date</attrlabl>
+        <attrdef>The date the data source indicated that the wildfire was first controlled.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No fire control date was recorded</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>7/17/1921</rdommin>
+            <rdommax>2/22/2021</rdommax>
+            <attrunit>Date</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Containment_Date</attrlabl>
+        <attrdef>The date the data source indicated that the wildfire was discovered.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No fire containment date was recorded</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>12/31/1910</rdommin>
+            <rdommax>1/26/2021</rdommax>
+            <attrunit>Date</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Growth_Cessation_Date</attrlabl>
+        <attrdef>The date the data source indicated that the wildfire was contained.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No fire growth cessation date was recorded</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>nan</rdommin>
+            <rdommax>nan</rdommax>
+            <attrunit>Date</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Wildfire_Out_Date</attrlabl>
+        <attrdef>The date the data source indicated that the wildfire was declared out.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No fire out date was recorded</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>8/22/1910</rdommin>
+            <rdommax>12/3/2019</rdommax>
+            <attrunit>Date</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Rx_Start_Date</attrlabl>
+        <attrdef>The date the data source indicated that the prescribed fire was started.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No prescribed fire start date was recorded</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>9/2/1910</rdommin>
+            <rdommax>12/16/2020</rdommax>
+            <attrunit>Date</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Rx_End_Date</attrlabl>
+        <attrdef>The date the data source indicated that the prescribed fire was declared out.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No prescribed fire out date was recorded</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>9/26/1950</rdommin>
+            <rdommax>5/12/2021</rdommax>
+            <attrunit>Date</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Other_Fire_Date</attrlabl>
+        <attrdef>Another date that might be important for the user.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No other fire date was recorded</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>4/1/1898</rdommin>
+            <rdommax>12/31/2021</rdommax>
+            <attrunit>Date</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Other_Fire_Date_Type</attrlabl>
+        <attrdef>The type of date recorded in the Other_Date field.	</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No other fire date was recorded</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Upload_Date</attrlabl>
+        <attrdef>The date the fire polygon was uploaded into the original data source</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No fire upload date was recorded</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>1/1/1970</rdommin>
+            <rdommax>7/29/2021</rdommax>
+            <attrunit>Date</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Map_Digitization_Method</attrlabl>
+        <attrdef>The original data source's description of how the fire perimeter was digitized.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No map digitization method was listed.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Data_Notes</attrlabl>
+        <attrdef>Any notes associated with the fire polygon as indicated by the original data source.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No notes field exists or no notes were indicated for this fire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Processing_Notes</attrlabl>
+        <attrdef>Notes created during the processing of this dataset if any field was changed from the original value and how and why it was modified.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No changes were made to this record.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Length</attrlabl>
+        <attrdef>Automatically calculated perimeter length in meters</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.013356</rdommin>
+            <rdommax>12319194.270605</rdommax>
+            <attrunit>Meters</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Area</attrlabl>
+        <attrdef>Automatically calculated polygon area in square meters</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.000005</rdommin>
+            <rdommax>14625422591.374716</rdommax>
+            <attrunit>Square meters</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>USGS_Wildland_Fire_Combined_Dataset.csv</enttypl>
+        <enttypd>Comma Separated Value (CSV) file containing data.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Unique identification for the polygon and it's attributes</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>A unique, numeric identification number</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>USGS_Assigned_ID</attrlabl>
+        <attrdef>Assigned unique identification for the polygon and it's attributes. Used to provide consistency if parts of the dataset are exported or the OBJECTID is otherwise changed.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>A unique, numeric identification number</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Assigned_Fire_Type</attrlabl>
+        <attrdef>Based on the fire polygon(s) used to create this fire feature what is the type assigned to this fire? If more than one type was assigned to a combined polygon, the assigned fire type was assigned in the following order of dominance: Wildfire, Likely Wildfire, Unknown - Likely Wildfire, Prescribed Fire, Unknown - Likely Prescribed Fire</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>Wildfire</edomv>
+            <edomvd>At least one of the original polygons that went into the creation of this fire feature had a fire type equal to Wildfire</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Likely Wildfire</edomv>
+            <edomvd>At least one of the original polygons that went into the creation of this fire feature had a fire type equal to Likely Wildfire and none of the polygons was equal to Wildfire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Unknown - Likely Wildfire</edomv>
+            <edomvd>At least one of the original polygons that went into the creation of this fire feature had a fire type equal to Unknown - Likely Wildfire and none of the polygons was equal to Wildfire or Likely Wildfire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Prescribed Fire</edomv>
+            <edomvd>At least one of the original polygons that went into the creation of this fire feature had a fire type equal to Prescribed Fire and none of the polygons was equal to Wildfire, Likely Wildfire, or Unknown - Likely Wildfire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Unknown - Likely Prescribed Fire</edomv>
+            <edomvd>Only polygons with a fire type of Unknown - Likely Prescribed Fire were recorded for this fire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Fire_Year</attrlabl>
+        <attrdef>The calendar year when the dataset creators determined the fire occurred. </attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1835</rdommin>
+            <rdommax>2020</rdommax>
+            <attrunit>Year</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Fire_Polygon_Tier</attrlabl>
+        <attrdef>The tier from which the fire polygon was generated. One or more polygons within the tier could be combined to create the fire polygon.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1</rdommin>
+            <rdommax>8</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Fire_Attribute_Tiers</attrlabl>
+        <attrdef>All fire tiers that contributed attributes to the fire feature. A list of all tiers where a polygon intersects the current fire perimeter in space and time.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>GIS_Acres</attrlabl>
+        <attrdef>The GIS calculated acres of the fire polygon calculated by using the Calculate Geometry tool in ArcGIS Pro.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>1566273.18533434</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>GIS_Hectares</attrlabl>
+        <attrdef>The GIS calculated hectares of the fire polygon calculated by using the Calculate Geometry tool in ArcGIS Pro.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>633848.269930318</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Source_Datasets</attrlabl>
+        <attrdef>All of the original source datasets that contributed to either the polygon or the attributes. Each dataset has the number of polygons contributed listed in parentheses after the dataset name.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Listed_Fire_Types</attrlabl>
+        <attrdef>Each fire type listed in the fires from the merged dataset that intersect this polygon in space and year. The number of features that contributed the specific fire type are in parentheses after the fire type.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Listed_Fire_Names</attrlabl>
+        <attrdef>Each fire name listed in the fires from the merged dataset that intersect this polygon in space and year. The number of features that contributed the specific fire name are in parentheses after the fire name.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Listed_Fire_Codes</attrlabl>
+        <attrdef>Each fire code listed in the fires from the merged dataset that intersect this polygon in space and year. The number of features that contributed the specific fire code are in parentheses after the fire code.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Listed_Fire_IDs</attrlabl>
+        <attrdef>Each fire type listed in the IDs from the merged dataset that intersect this polygon in space and year. The number of features that contributed the specific fire ID are in parentheses after the fire ID.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No fire IDs were found in any of the datasets that contributed to this polygon.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Listed_Fire_IRWIN_IDs</attrlabl>
+        <attrdef>Each fire IRWIN ID listed in the fires from the merged dataset that intersect this polygon in space and year. The number of features that contributed the specific fire IRWIN ID are in parentheses after the fire IRWIN ID.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No IRWIN IDs were found in any of the datasets that contributed to this polygon.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Listed_Fire_Dates</attrlabl>
+        <attrdef>Each fire date listed in the fires from the merged dataset that intersect this polygon in space and year. The number of features that contributed the specific fire date are in parentheses after the fire date.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No fire dates were found in any of the datasets that contributed to this polygon.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Listed_Fire_Causes</attrlabl>
+        <attrdef>Each fire cause listed in the fires from the merged dataset that intersect this polygon in space and year. The number of features that contributed the specific fire cause are in parentheses after the fire cause.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No fire causes were found in any of the datasets that contributed to this polygon.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Listed_Fire_Cause_Class</attrlabl>
+        <attrdef>Each fire cause class listed in the fires from the merged dataset that intersect this polygon in space and year. The number of features that contributed the specific fire cause class are in parentheses after the fire cause class.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Listed_Rx_Reported_Acres</attrlabl>
+        <attrdef>Each prescribed fire reported acres listed in the fires from the merged dataset that intersect this polygon in space and year. The number of features that contributed the specific reported acres are in parentheses after the reported acres.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>There are no reported acres for wildfires, if null for prescribed fires, the prescribed fire did not have a reported acreage in any of the datasets that were used.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Listed_Map_Digitize_Methods</attrlabl>
+        <attrdef>Each fire digitization method listed in the fires from the merged dataset that intersect this polygon in space and year. The number of features that contributed the specific fire digitization method are in parentheses after the fire digitization method.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No map digitization methods were found in any of the datasets that contributed to this polygon.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Listed_Notes</attrlabl>
+        <attrdef>Each fire notes listed in the fires from the merged dataset that intersect this polygon in space and year. The number of features that contributed the specific fire notes are in parentheses after the fire note.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No fire notes were found in any of the datasets that contributed to this polygon.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Processing_Notes</attrlabl>
+        <attrdef>Indicates that the attribute data were altered during the processing and a new attribute was indicated. It will also explain the rationale for the change. Each polygon that had an attribute changed will be listed along with a count, in parentheses indicating how many polygons had the change made to them.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>No notes</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Wildfire_Notice</attrlabl>
+        <attrdef>A notice present in every field that indicates the quality of the wildfire data in this dataset.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Prescribed_Burn_Notice</attrlabl>
+        <attrdef>A notice present in every field that indicates the quality of the prescribed burn data in this dataset.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Wildfire_and_Rx_Flag</attrlabl>
+        <attrdef>A text flag field indicating that the attributes from the various sources indicate that the fire was both a wildfire and a prescribed fire. This could indicate an error in assigning the fire type, a misassignment of the fire type, or that there were actually two fires that occurred in this area in the same year, one a wildfire and one a prescribed burn.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>The fire has only one fire type, wildfire or prescribed fire, associated with it.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Overlap_Within_1_or_2_Flag</attrlabl>
+        <attrdef>An ArcGIS Tabulate Intersection Tool was used to identify areas that burned with &gt;10% overlap of the current fire within 1 or 2 years of the current burn. Each fire that met that criteria was included in this attribute including it's ID, year burned, percent overlap, and acres.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;&lt; empty cell &gt;&gt;</edomv>
+            <edomvd>No Data</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Circleness_Scale</attrlabl>
+        <attrdef>A measure of a polygon's similarity to a true circle. calculated using the Shape_Length and Shape_Area fields. Circle-ness = 4*pi*(Shape_Area/(Shape_Length * Shape_Length)). As the number approaches 1, the polygon becomes more circular.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.000017141582965</rdommin>
+            <rdommax>0.99995636242638</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Circle_Flag</attrlabl>
+        <attrdef>Any Circle circle-ness values &gt;=0.98 are flagged with a 1. The remaining values are null. 1 indicates that the polygon is very circle-like and is likely incorrect. However, other values that are not flagged may still be quite circular and incorrect.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>&lt;Null&gt;</edomv>
+            <edomvd>The circle circle-ness is &lt;0.98 and the polygon has not been flagged as being very circular.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>1</edomv>
+            <edomvd>The circle circle-ness is &gt;=0.98 and the polygon has been flagged as being very circular.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Exclude_From_Summary_Rasters</attrlabl>
+        <attrdef>Some fires in this dataset appear to be buffered circles. These were kept in the dataset to show location and approximate area. However a decision was made to exclude circular fires larger than 1 acre in size from the summary raster calculations. This field indicates whether the fire was excluded from ('Yes') or included in ('No') the summary raster calculations.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>No</edomv>
+            <edomvd>This is a non-circular fire and was included in the raster summary datasets</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Yes</edomv>
+            <edomvd>This is a circular fire larger than 1 acre in size and was excluded from the raster summary datasets</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Length</attrlabl>
+        <attrdef>Automatically calculated perimeter length in meters</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.035809</rdommin>
+            <rdommax>17579475.753534</rdommax>
+            <attrunit>Meters</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Area</attrlabl>
+        <attrdef>Automatically calculated polygon area in square meters</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.000092</rdommin>
+            <rdommax>6338482699.303178</rdommax>
+            <attrunit>Square meters</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>USGS_Wildland_Fires_Overlapping_Fire_Data.csv</enttypl>
+        <enttypd>Comma Separated Value (CSV) file containing data.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Unique identification for the table row</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>A unique, numeric identification number</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>USGS_Assigned_ID</attrlabl>
+        <attrdef>A unique ID assigned by the USGS creators of the dataset to the focal fire. Used to identify the unique   fire polygon in the original dataset. This is used instead of OBJECTID because OBJECTIDs can change if the dataset is manipulated. This field should not be edited or altered.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>Number</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Assigned_Fire_Type</attrlabl>
+        <attrdef>The fire type assigned to the focal fire boundary during the creation of the dataset</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>Likely Wildfire</edomv>
+            <edomvd>The fire was likely a wildfire but there is no way to confirm this.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Wildfire</edomv>
+            <edomvd>The fire is a confirmed wildfire based on the available attributes.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Prescribed Fire</edomv>
+            <edomvd>The fire is a confirmed prescribed fire based on the available attributes.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Unknown - Likely Wildfire</edomv>
+            <edomvd>This polygon came from MTBS and was labeled "Unknown". However, research done by Karen Short indicates that the fire is likely a wildfire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Unknown - Likely Prescribed Fire</edomv>
+            <edomvd>This polygon came from MTBS and was labeled "Unknown". However, research done by Karen Short indicates that the fire is likely a prescribed fire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Fire_Year</attrlabl>
+        <attrdef>The fire year assigned to the focal fire boundary during the creation of the dataset</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1835</rdommin>
+            <rdommax>2020</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Acres_Overlap</attrlabl>
+        <attrdef>The acres the focal and overlapping fire overlap with each other.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>4.59615e-10</rdommin>
+            <rdommax>436964.865</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Percent_Overlap</attrlabl>
+        <attrdef>The percentage the focal fire is overlapped by the overlapping fire.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.0</rdommin>
+            <rdommax>100.0</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Overlapping_USGS_Assigned_ID</attrlabl>
+        <attrdef>A unique ID assigned by the USGS creators of the dataset to the overlapping fire. Used to identify the unique fire polygon in the original dataset. This is used instead of OBJECTID because OBJECTIDs can change if the dataset is manipulated. This field should not be edited or altered.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>Number</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Overlapping_Assigned_Fire_Type</attrlabl>
+        <attrdef>The fire type assigned to the overlapping fire boundary during the creation of the dataset</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>Likely Wildfire</edomv>
+            <edomvd>The fire was likely a wildfire but there is no way to confirm this.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Prescribed Fire</edomv>
+            <edomvd>The fire is a confirmed prescribed fire based on the available attributes.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Wildfire</edomv>
+            <edomvd>The fire is a confirmed wildfire based on the available attributes.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Unknown - Likely Prescribed Fire</edomv>
+            <edomvd>This polygon came from MTBS and was labeled "Unknown". However, research done by Karen Short indicates that the fire is likely a wildfire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Unknown - Likely Wildfire</edomv>
+            <edomvd>This polygon came from MTBS and was labeled "Unknown". However, research done by Karen Short indicates that the fire is likely a prescribed fire.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Overlapping_Fire_Year</attrlabl>
+        <attrdef>The fire year assigned to the overlapping fire boundary during the creation of the dataset</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1835</rdommin>
+            <rdommax>2020</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Years_Before_or_After_Fire</attrlabl>
+        <attrdef>The number of years before or after the focal fire the overlapping fire occurred. Negative values indicate the overlapping fire occurred before the focal fire. Positive values indicate the overlapping fire occurred after the focal fire.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>-180</rdommin>
+            <rdommax>180</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>Circular_Fire_Flag_Counts_by_Year.csv</enttypl>
+        <enttypd>Comma Separated Value (CSV) file containing data.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>Fire Year</attrlabl>
+        <attrdef>The year in which the fires occurred</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1908</rdommin>
+            <rdommax>2020</rdommax>
+            <attrunit>Year</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Total Fires</attrlabl>
+        <attrdef>Count of the total number of fire polygons that occurred in that year.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>34</rdommin>
+            <rdommax>5636</rdommax>
+            <attrunit>Count</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Circleness Threshold</attrlabl>
+        <attrdef>The circle-ness value at which a fire was considered circular in the dataset. For the 2021 release that value was &gt;=0.98</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Count Circular Flagged Fires</attrlabl>
+        <attrdef>The number of fires in the Fire Year that were flagged as being very circular</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>5</rdommin>
+            <rdommax>445</rdommax>
+            <attrunit>Count</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Proportion Circular</attrlabl>
+        <attrdef>The proportion of fires (0 to 1) in a given year that were flagged as being very circular.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.007</rdommin>
+            <rdommax>0.498</rdommax>
+            <attrunit>Proportion</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>Circular_Fire_Flag_Counts_by_State.csv</enttypl>
+        <enttypd>Comma Separated Value (CSV) file containing data.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>State Abbreviation</attrlabl>
+        <attrdef>The state in which the fires occurred. If a fire crossed state lines it was counted in both states</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>FIPS Code (2-Digit State ID)</codesetn>
+            <codesets>Federal Information Processing System (FIPS)</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>State Name</attrlabl>
+        <attrdef>The full text name of the state.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Total Fires</attrlabl>
+        <attrdef>Count of the total number of fire polygons that occurred in that state.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>120</rdommin>
+            <rdommax>27511</rdommax>
+            <attrunit>Count</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Circleness Threshold</attrlabl>
+        <attrdef>The circle-ness value at which a fire was considered circular in the dataset. For the 2021 release that value was &gt;=0.98</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Count Circular Flagged Fires</attrlabl>
+        <attrdef>The number of fires in the state that were flagged as being very circular</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1</rdommin>
+            <rdommax>4027</rdommax>
+            <attrunit>Count</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Proportion Circular</attrlabl>
+        <attrdef>The proportion of fires (0 to 1) in a given state that were flagged as being very circular.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>0.501</rdommax>
+            <attrunit>Proportion</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>Wildfire_and_Prescribed_Fire_Flag_Counts_By_Year.csv</enttypl>
+        <enttypd>Comma Separated Value (CSV) file containing data.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>Fire Year</attrlabl>
+        <attrdef>The year in which the fires occurred</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1958</rdommin>
+            <rdommax>2020</rdommax>
+            <attrunit>Year</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Total Fires</attrlabl>
+        <attrdef>Count of the total number of fire polygons that occurred in that year.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>404</rdommin>
+            <rdommax>5336</rdommax>
+            <attrunit>Count</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Count Wildfire and Prescribed Fire Flag</attrlabl>
+        <attrdef>The number of fires in the Fire Year that were flagged as being both a wildfire and a prescribed fire</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1</rdommin>
+            <rdommax>136</rdommax>
+            <attrunit>Count</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Proportion Wild and Prescribed</attrlabl>
+        <attrdef>The proportion of fires (0 to 1) in a given year that were flagged as being both a wildfire and a prescribed fire</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.001</rdommin>
+            <rdommax>0.034</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>Wildfire_and_Prescribed_Fire_Flag_Counts_By_State.csv</enttypl>
+        <enttypd>Comma Separated Value (CSV) file containing data.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>State Abbreviation</attrlabl>
+        <attrdef>The state in which the fires occurred. If a fire crossed state lines it was counted in both states</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>FIPS Code (2-Digit State ID)</codesetn>
+            <codesets>Federal Information Processing System (FIPS)</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>State Name</attrlabl>
+        <attrdef>The full text name of the state.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <udom>Alphanumeric text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Total Fires</attrlabl>
+        <attrdef>Count of the total number of fire polygons that occurred in that state.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>80</rdommin>
+            <rdommax>27511</rdommax>
+            <attrunit>Count</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Count Wildfire and Prescribed Fire Flag</attrlabl>
+        <attrdef>The number of fires in the state that were flagged as being both a wildfire and a prescribed fire</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1</rdommin>
+            <rdommax>247</rdommax>
+            <attrunit>Count</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Proportion Wild and Prescribed</attrlabl>
+        <attrdef>The proportion of fires (0 to 1) in a given state that were flagged as being both a wildfire and a prescribed fire</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.002</rdommin>
+            <rdommax>0.1</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntperp>
+          <cntper>GS ScienceBase</cntper>
+          <cntorg>U.S. Geological Survey</cntorg>
+        </cntperp>
+        <cntaddr>
+          <addrtype>mailing address</addrtype>
+          <address>Denver Federal Center, Building 810, Mail Stop 302</address>
+          <city>Denver</city>
+          <state>CO</state>
+          <postal>80225</postal>
+          <country>United States</country>
+        </cntaddr>
+        <cntvoice>1-888-275-8747</cntvoice>
+        <cntemail>sciencebase@usgs.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall the act of distribution constitute any such warranty. Any use of trade, product, or firm names is for descriptive purposes only and does not imply endorsement by the U.S. Government.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>.shp, .gdb</formname>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://doi.org/10.5066/P9ZXGFY3</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>None</fees>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>202009</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>FRESC Science Data Coordinator</cntper>
+          <cntorg>Forest and Rangeland Ecosystem Science Center</cntorg>
+        </cntperp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>777 NW 9th Street, Suite 400</address>
+          <city>Corvallis</city>
+          <state>OR</state>
+          <postal>97330</postal>
+        </cntaddr>
+        <cntvoice>(541) 750-1030</cntvoice>
+        <cntemail>fresc_outreach@usgs.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Biological Data Profile of the Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001.1-1999</metstdv>
+  </metainfo>
+</metadata>
