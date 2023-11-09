@@ -58,7 +58,6 @@ The below sample codes were referenced for the following tasks and have been pro
 │   ├── particulate_aqi_data_processed.csv
 │   └── particulate_data.json
 ├── reports/
-│   ├── Visualization Descriptions and Reflection.docx
 │   └── Visualization Descriptions and Reflection.pdf
 ├── src/
 │   ├── Analysis_Prediction_And_Visualization.ipynb
