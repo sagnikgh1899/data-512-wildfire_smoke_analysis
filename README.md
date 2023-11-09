@@ -72,7 +72,7 @@ The below sample codes were referenced for the following tasks and have been pro
 - **data** : This directory contains data files, including metadata about the wildland fire polygons.
 - **images** : Here, we'll find visualizations that provide insights into the annual acres burned in proximity to Tulare, the distribution of fires by distance from Tulare, and the relationship between fire smoke estimates and Air Quality Index (AQI) in Tulare.
 - **intermediate data** : This directory stores intermediate data files used in the analysis, including processed data related to smoke estimates, AQI data, and more.
-- **reports** : This directory contains reports in both Word and PDF formats, providing descriptions and reflections on the project's visualizations and findings.
+- **reports** : This directory contains report in PDF format, providing descriptions and reflections on the project's visualizations and findings.
 - **src** : The source code for the project is located here. It includes Jupyter Notebook files that cover various aspects of the analysis, prediction, data acquisition, and AQI per year.
 - **LICENSE** : A file that contains an MIT LICENSE for sagnikgh1899/data-512-wildfire_smoke_analysis repo.
 - **README.md** : A file that contains information to reproduce the analysis, including data descriptions, attributions and provenance information, and descriptions of all relevant resources and documentation (inside and outside the repo) and hyperlinks to those resources.
