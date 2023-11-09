@@ -102,6 +102,15 @@ To reproduce this analysis, follow these steps:
 
 *Feel free to use, modify, or contribute to this project while adhering to the MIT License.*
 
+## Snapshot of analysis output
+#### Fire Distribution by Distance from Tulare
+![Fire Distribution by Distance from Tulare](images/Fire_Distribution_by_Distance_from_Tulare.png) 
+#### Annual Acres Burned in Proximity to Tulare
+![Annual Acres Burned in Proximity to Tulare](images/Annual_Acres_Burned_in_Proximity_to_Tulare.png)
+#### Fire Smoke Estimate vs AQI in Tulare
+![Fire Smoke Estimate vs AQI in Tulare](images/Fire_Smoke_Estimate_vs_AQI_in_Tulare.png)
+
+
 
 ## Best practices for documentation
 - PEP 8 – Style Guide for Python Code ([Reference link](https://peps.python.org/pep-0008/))
